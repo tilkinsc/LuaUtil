@@ -19,9 +19,6 @@ Player.new = function(statics, stats)
 		__index = function(self, i)
 			return self.Stats[i] or self.Data[i]
 		end;
-		__newindex = function(self, i, v)
-			rawset(self, i, v)
-		end;
 	})
 	
 	-- get string keys of all your stats
