@@ -1,0 +1,39 @@
+
+local Constraint = {}
+
+Constraint.constrain = function(m, v, ma)
+	return v < m and m or v > ma and ma or v
+end
+
+Constraint.iLimit = function(m, va, ma)
+	local this = {
+		Min = m;
+		Value = va;
+		Max = ma;
+	}
+	
+	return setmetatable(this, {
+		__add = function(self, v)
+			self.Value = Constraint.constrain(self.Min, self.Value + v, self.Max)
+			return self
+		end;
+		__mul = function(self, v)
+			self.Value = Constraint.constrain(self.Min, self.Value * v, self.Max)
+			return self
+		end;
+		__div = function(self, v)
+			self.Value = Constraint.constrain(self.Min, self.Value / v, self.Max)
+			return self
+		end;
+		__sub = function(self, v)
+			self.Value = Constraint.constrain(self.Min, self.Value - v, self.Max)
+			return self
+		end;
+		__mod = function(self, v)
+			self.Value = Constraint.constrain(self.Min, self.Value % v, self.Max)
+			return self;
+		end;
+	})
+end
+
+return Constraint
