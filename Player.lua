@@ -1,9 +1,9 @@
 
 local Player = {}
 
-Player.new = function(name, stats)
+-- stats is a dictionary which holds Variable -> Value amendments
+Player.new = function(stats)
 	local this = {
-		Name = name;
 		Stats = stats;
 		Data = {};
 	}
