@@ -76,11 +76,14 @@ end
 Math.mode = function(...)
 	local register = Table.count({...})
 	local highest = 0
-	local highest2
+	local index = 0
 	for i, v in pairs(register)do
-		highest = v > highest and i or highest
+		if(v > highest)then
+			highest = v
+			index = i
+		end
 	end
-	return highest
+	return index
 end
 
 -- finds the range of a tuple
