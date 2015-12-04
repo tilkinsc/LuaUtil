@@ -62,7 +62,8 @@ Math.mean = function(...)
 end
 
 -- finds the mean of a tuple
-Math.median = function(..., middle)
+-- middle 
+Math.median = function(middle, ...)
 	local tab = {...}
 	table.sort(tab)
 	local middle = #tab / 2
@@ -90,13 +91,6 @@ end
 Math.range = function(...)
 	local tab = {...}
 	return math.max(unpack(tab)) - math.min(unpack(tab))
-end
-
--- returns the power of a number whose exponent must be negative
--- number is the leading coefficient
--- exponent is the negative number, which is the exponent
-Math.npow = function(number, exponent)
-	return 1 / math.pow(number, exponent)
 end
 
 return Math
