@@ -3,7 +3,19 @@ local Table = require("Table")
 
 local Math = {}
 
-Math.nlog =  2.718281828459
+Math.const = {
+	byte = 8;
+	word = 16;
+	dword = 32;
+	qword = 64;
+	pi = 3.141592653;
+	pi2 = 6.283185306;
+	euler = 2.718281828;
+	masch = 0.577215664;
+	gold = 1.618033988;
+	igold = 0.618033988;
+	silver = 2.414213562;
+}
 
 -- start is the number you wish to round
 -- length is a number starting with 1 and only containing 0s
