@@ -7,7 +7,7 @@ local Table = {}
 Table.count = function(tab)
 	local out = {}
 	for i=1, #tab do
-		out[tab[i]] = (out[tab[i]] and out[tab[i]] + 1 or 1)
+		out[tab[i]] = out[tab[i]] and out[tab[i]] + 1 or 1
 	end
 	return out
 end
