@@ -62,11 +62,11 @@ Math.mean = function(...)
 end
 
 -- finds the mean of a tuple
-Math.median = function(...)
+Math.median = function(..., middle)
 	local tab = {...}
 	table.sort(tab)
 	local middle = #tab / 2
-	if(#tab % 2 == 0)then
+	if(#tab % 2 == 0 and middle)then
 		return (tab[middle] + tab[middle+1]) / 2
 	end
 	return tab[middle]
