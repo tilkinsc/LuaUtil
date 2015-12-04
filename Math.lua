@@ -5,6 +5,13 @@ local Math = {}
 
 Math.nlog =  2.718281828459
 
+-- start is the number you wish to round
+-- length is a number starting with 1 and only containing 0s
+-- length dictates what position in the digit you round to
+Math.round = function(start, length)
+	return math.floor(start * length + 0.5) / length
+end
+
 -- low 'float' precision linear interpolation, 3 
 -- start is beginning number
 -- ending is goal number
@@ -51,26 +58,27 @@ end
 -- finds the mean of a tuple
 Math.mean = function(...)
 	local tab = {...}
-	return Math.sum(0, tab) / #tab
+	return Math.sum(0, unpack(tab)) / #tab
 end
 
 -- finds the mean of a tuple
 Math.median = function(...)
 	local tab = {...}
-	local register = table.sort(tab)
+	table.sort(tab)
 	local middle = #tab / 2
 	if(#tab % 2 == 0)then
-		return (register[middle] + register[middle+1]) / 2
+		return (tab[middle] + tab[middle+1]) / 2
 	end
-	return register[middle]
+	return tab[middle]
 end
 
 -- finds the mode of a tuple
 Math.mode = function(...)
 	local register = Table.count({...})
-	local highest = register[1]
-	for i=2, #register do
-		highest = register[i] > highest and register[i] or highest
+	local highest = 0
+	local highest2
+	for i, v in pairs(register)do
+		highest = v > highest and i or highest
 	end
 	return highest
 end
