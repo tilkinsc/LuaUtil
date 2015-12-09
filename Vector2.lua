@@ -3,7 +3,7 @@ local Math = require("Math")
 
 local Vector2 = {}
 
-Vector2.new = function(x, y, z)
+Vector2.new = function(x, y)
 	local this = {
 		X = x or 0;
 		Y = y or 0;
