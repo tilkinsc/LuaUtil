@@ -8,7 +8,6 @@ Vector2.new = function(x, y, z)
 		X = x or 0;
 		Y = y or 0;
 	}
-	this.magnitude = math.sqrt(x * x + y * y)
 	
 	-- low 'float' precision linear interpolation
 	-- v is ending vector2
@@ -30,13 +29,16 @@ Vector2.new = function(x, y, z)
 		)
 	end
 	
-	-- when indexing, unit will, if called, be added to the field space with a normalized unit vector of X and Y in the field space
+	-- when indexing, unit will, if called, X and Y will be returned as a normalized unit vector from the field space
+	-- when indexing, magnitude will, if called, X and Y will be returned as a pyhtagorean theorem distance number from the field space
 	-- just standard operations that manipulate X and Y based off the operator you are doing
 	return setmetatable(this, {
 		__index = function(self, i)
 			if(i == "unit")then
-				self.unit = Vector2.new(self.X / self.magnitude, self.Y / self.magnitude)
-				return self.unit
+				return Vector2.new(self.X / self.magnitude, self.Y / self.magnitude)
+			end
+			if(i == "magnitude")then
+				return Math.pythag(self.X, self.Y)
 			end
 		end;
 		__add = function(self, v)
